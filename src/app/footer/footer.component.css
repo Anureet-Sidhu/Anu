@@ -1,0 +1,8 @@
+.marginFooter{
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: aliceblue;
+    margin-bottom: 0px;
+    text-align: center;
+}

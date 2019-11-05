@@ -1,5 +1,5 @@
 agm-map {
-    height: 800px;
+    height: 1000px;
   }
   
   
@@ -9,4 +9,28 @@ agm-map {
   
   a {
     color: darkblue;
+  }
+  .jobInput{
+    width: 300px;
+    margin-bottom: 1px;
+  }
+  .searchIcon{
+    margin-left: 5px;
+  }
+  .padding0{
+    padding: 0 !important;
+  }
+  .backgroundClr{
+    background-color: aliceblue;
+  }
+  .heading{
+border: 1px solid #555;
+  }
+  .footer{
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: aliceblue;
+    margin-bottom: 0px;
+    text-align: center;
   }

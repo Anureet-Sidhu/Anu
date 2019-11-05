@@ -1,10 +1,33 @@
-<h1>Job market analysis</h1>
 
 
+<div class="row backgroundClr heading">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1>Job market analysis</h1>
+      </div>
+</div>
+<div class="row backgroundClr">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+<input type="text" class="jobInput"
+placeholder="What kind of job are you looking for?"
+  required
+  [(ngModel)]="searchField" />
+  <span (click)="loadJobs()">
+  <fa name="search" class="searchIcon"></fa></span>
+  </div>
+  <div class="col-md-4"></div>
+  </div>
 
+<div class="row display">
+<div class="col-md-3 padding0 backgroundClr"> 
+  <app-side-nav></app-side-nav>
+</div>
+<div class="col-md-9 padding0">
+<app-map></app-map>
+</div>
+</div>
+<div class="row backgroundClr footer">
+  <app-footer></app-footer>
+</div>
 
-<agm-map [latitude]="lat" [longitude]="lng" style="height: 500px">
-  <div  *ngFor="let marker of markers | async;">
-       <agm-marker [latitude]="marker.lat" [longitude]="marker.lng"></agm-marker>
- </div>
-</agm-map>
