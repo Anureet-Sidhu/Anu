@@ -1,4 +1,8 @@
 <mat-drawer-container class="example-container">
-        <mat-drawer class="inner-margin " mode="side" opened>Drawer content</mat-drawer>
-        <mat-drawer-content>Main content</mat-drawer-content>
+        <mat-drawer class="inner-margin " mode="side" opened>
+          <div *ngFor="let marker of list">
+            {{marker.jobs}}
+          </div>
+        </mat-drawer>
+       
       </mat-drawer-container>

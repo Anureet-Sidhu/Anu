@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MapServiceService } from './map-service.service';
 
@@ -10,6 +10,7 @@ import { MapServiceService } from './map-service.service';
 })
 export class MapComponent implements OnInit {
   height : number;
+  @Output() listToDisplay = new EventEmitter<any>();
   @HostListener('window:resize', ['$event'])
 onResize(event?) {
    this.height = window.innerHeight-130;
@@ -48,13 +49,14 @@ onResize(event?) {
     }
     this.markers[index].open = true;
   }
-  loadJobs() {
+  loadJobs(jobInput:string) {
     this.service.getJobData().subscribe(
       data => {
         this.markers$ = data;
         var s =data.Jobs;
         var myObject = eval('(' + s + ')');
         this.markers = myObject;
+        this.listToDisplay.emit({'list':this.markers});
       }
     );
   }
