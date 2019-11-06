@@ -34,3 +34,7 @@ border: 1px solid #555;
     margin-bottom: 0px;
     text-align: center;
   }
+  .disabled {
+    pointer-events: none; 
+    display: none; 
+  }

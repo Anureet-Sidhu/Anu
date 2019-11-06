@@ -13,7 +13,7 @@
 placeholder="What kind of job are you looking for?"
   required
   [(ngModel)]="searchField" />
-  <span (click)="valueChanged(searchField)">
+  <span (click)="valueChanged(searchField)" [class.disabled]="!searchField|| searchField.length===0">
   <fa name="search" class="searchIcon"></fa></span>
   </div>
   <div class="col-md-4"></div>
