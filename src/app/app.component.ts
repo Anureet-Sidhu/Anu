@@ -10,13 +10,19 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 })
 export class AppComponent implements OnInit  {
   constructor() { }
+  showAlert = false;
   @ViewChild(MapComponent,{static: false}) map: MapComponent;
   @ViewChild(SideNavComponent,{static: false}) sideNav: SideNavComponent;
   valueChanged(val) { 
    this.map.loadJobs(val);
 }
 displayList(event){
-this.sideNav.onDisplayListChanged(event.list);
+  if(!event.list || event.list.length===0){
+    this.showAlert = true;
+  }else{
+    this.sideNav.onDisplayListChanged(event.list);
+  }
+
 }
  
 

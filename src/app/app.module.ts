@@ -11,6 +11,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { FooterComponent } from './footer/footer.component';
     })
   ],
   providers: [],
-  declarations: [ AppComponent, MapComponent, SideNavComponent, FooterComponent ],
+  declarations: [ AppComponent, MapComponent, SideNavComponent, FooterComponent, AlertsComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

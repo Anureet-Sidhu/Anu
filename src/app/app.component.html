@@ -6,7 +6,7 @@
         <h1>Job market analysis</h1>
       </div>
 </div>
-<div class="row backgroundClr">
+<div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4">
 <input type="text" class="jobInput"
@@ -18,7 +18,9 @@ placeholder="What kind of job are you looking for?"
   </div>
   <div class="col-md-4"></div>
   </div>
-
+<div class="row displayAlert" *ngIf="showAlert">
+  <app-alerts></app-alerts>
+</div>
 <div class="row display">
 <div class="col-md-3 padding0 backgroundClr"> 
   <app-side-nav></app-side-nav>
