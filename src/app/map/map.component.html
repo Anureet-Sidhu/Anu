@@ -1,6 +1,7 @@
 <agm-map [latitude]="lat" [longitude]="lng"  [style.height.px]="height">
-        <div  *ngFor="let marker of markers; let i=index">
-             <agm-marker [latitude]="marker.lat" [longitude]="marker.lng"
+        <agm-marker-cluster  averageCenter="true" minimumClusterSize="2"
+        [imagePath]="'https://github.com/googlemaps/js-marker-clusterer/blob/gh-pages/images/m1.png?raw=true'">
+             <agm-marker *ngFor="let marker of markers; let i=index" [latitude]="marker.lat" [longitude]="marker.lng"
              (markerClick)="clickedMarker(i,marker.jobs)" >
              <agm-info-window 
              [isOpen]="marker.open"
@@ -8,5 +9,6 @@
              [longitude]="marker.lng" *ngIf="marker.open">{{content}}</agm-info-window>
             </agm-marker>
              
-       </div>
+       </agm-marker-cluster>
+
       </agm-map>

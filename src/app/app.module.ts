@@ -12,6 +12,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+ 
 
 @NgModule({
   imports: [
@@ -22,9 +25,11 @@ import { AlertsComponent } from './alerts/alerts.component';
     AngularFontAwesomeModule,
     MatSidenavModule,
     BrowserAnimationsModule,
+    NgbModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR GOOGLE KEY'
-    })
+    }),
+    AgmJsMarkerClustererModule
   ],
   providers: [],
   declarations: [ AppComponent, MapComponent, SideNavComponent, FooterComponent, AlertsComponent ],

@@ -11,8 +11,8 @@ export class MapServiceService {
   url: string;
   constructor(private http:HttpClient) { }
 
-  getJobData(): Observable<any>{
-    this.url ='/flaskJobs';
+  getJobData(jobSearchString,locationString): Observable<any>{
+    this.url ='/flaskJobs/'+jobSearchString+'/'+locationString;
     return this.http.get(this.url).pipe(map(data=>{
       return data;
     }

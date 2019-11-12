@@ -11,9 +11,11 @@ export class AlertsComponent implements OnInit {
   closeAlert() {
     this.alert.nativeElement.classList.remove('show');
   }
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+    this.alert.nativeElement.classList.add('show');
   }
 
 }

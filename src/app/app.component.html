@@ -3,31 +3,50 @@
 <div class="row backgroundClr heading">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <h1>Job market analysis</h1>
+        <h1>Job Market Analysis</h1>
       </div>
 </div>
 <div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-<input type="text" class="jobInput"
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+<input type="text" class="form-control jobInput"
 placeholder="What kind of job are you looking for?"
   required
   [(ngModel)]="searchField" />
-  <span (click)="valueChanged(searchField)" [class.disabled]="!searchField|| searchField.length===0">
+  <span (click)="valueChanged(searchField)" [class.disabled]="!searchField|| searchField.length==0 || !model || model.length==0">
   <fa name="search" class="searchIcon"></fa></span>
+  <span *ngIf="showLoader"> <fa name="fas fa-spinner fa-pulse" class="spinner"></fa></span>
   </div>
-  <div class="col-md-4"></div>
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <input
+  id="typeahead-focus"
+  type="text"
+  class="form-control jobInput"
+  [(ngModel)]="model"
+  [ngbTypeahead]="search"
+  (focus)="focus$.next($event.target.value)"
+  (click)="click$.next($event.target.value)"
+  [editable]="false"
+  #instance="ngbTypeahead"
+/>
+  </div>
   </div>
 <div class="row displayAlert" *ngIf="showAlert">
   <app-alerts></app-alerts>
 </div>
-<div class="row display">
-<div class="col-md-3 padding0 backgroundClr"> 
+<div class="row display" [hidden]="!showSideNav">
+<div class="col-md-3 padding0 backgroundClr" [hidden]="!showSideNav"> 
   <app-side-nav></app-side-nav>
 </div>
 <div class="col-md-9 padding0">
 <app-map (listToDisplay)='displayList($event)'></app-map>
 </div>
+</div>
+<div class="row display" [hidden]="showSideNav">
+  <div class="col-md-12 padding0">
+    <app-map (listToDisplay)='displayList($event)'></app-map>
+    </div>
 </div>
 <div class="row backgroundClr footer">
   <app-footer></app-footer>

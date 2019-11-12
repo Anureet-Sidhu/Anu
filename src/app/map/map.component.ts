@@ -49,15 +49,18 @@ onResize(event?) {
     }
     this.markers[index].open = true;
   }
-  loadJobs(jobInput:string) {
-    this.service.getJobData().subscribe(
+  loadJobs(jobInput:string,location:string) {
+    this.service.getJobData(jobInput,location).subscribe(
       data => {
         this.markers$ = data;
         var s =data.Jobs;
         var myObject = eval('(' + s + ')');
         this.markers = myObject;
         this.listToDisplay.emit({'list':this.markers});
-      }
+      },
+      error => {
+        this.markers = [];
+        this.listToDisplay.emit({'list':[]});}
     );
   }
 
