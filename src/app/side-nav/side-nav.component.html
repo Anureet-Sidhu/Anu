@@ -1,8 +1,14 @@
 <mat-drawer-container class="example-container">
         <mat-drawer class="inner-margin " mode="side" opened>
-          <div *ngFor="let marker of list">
+          <div class="row" *ngFor="let marker of list">
+          <div class="col-md-9" >
             {{marker.jobs}}
           </div>
+          <div class="col-md-3">
+              <fa name="fas fa-globe"></fa>
+              <fa name="fas fa-star" class="rating" aria-hidden="true"></fa>
+          </div>
+        </div>
         </mat-drawer>
        
       </mat-drawer-container>
