@@ -7,6 +7,15 @@
         "^/api": ""
       },
       "logLevel": "debug"
+    },
+    "/crimeData": {
+      "target": "http://127.0.0.1:5002",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "logLevel": "debug"
     }
   }
   

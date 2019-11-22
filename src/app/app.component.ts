@@ -1,11 +1,13 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, HostListener } from '@angular/core';
 import { MapComponent } from './map/map.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import {Observable, Subject, merge} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+
 const cities=['Barrie','Belleville','Brampton','Brant','Brantford','Brockville','Burlington','Cambridg','Clarence-Rockland','Cornwall','Dryden','Elliot Lake','Greater Sudbury','Guelph','Haldimand County','Hamilton','Kawartha Lakes','Kenora','Kingston','Kitchener','London','Markham','Mississauga','Niagara Falls','Norfolk County','North Bay','Orillia','Oshawa','Ottawa','Owen Sound','Pembroke','Peterborough','Pickering','Port Colborne','Prince Edward County','Quinte West','Richmond Hill','Sarnia','Sault Ste. Marie','St. Catharines','St.Thomas','Stratford','Temiskaming Shores','Thorold','Thunder Bay','Timmins','Toronto','Vaughan','Waterloo','Welland','Windsor','Woodstock']; 
-const states=['Alberta','British Columbia','Manitoba','New Brunsick','Newfoundland and labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon'];
+const states=['Alberta','British Columbia','Manitoba','New Brunsick','Newfoundland and labrador','Northwest Territories','Nova Scotia','Nunavut','Ontario','Prince Edward Island','Quebec','Saskatchewan','Yukon',
+'Barrie','Belleville','Brampton','Brant','Brantford','Brockville','Burlington','Cambridg','Clarence-Rockland','Cornwall','Dryden','Elliot Lake','Greater Sudbury','Guelph','Haldimand County','Hamilton','Kawartha Lakes','Kenora','Kingston','Kitchener','London','Markham','Mississauga','Niagara Falls','Norfolk County','North Bay','Orillia','Oshawa','Ottawa','Owen Sound','Pembroke','Peterborough','Pickering','Port Colborne','Prince Edward County','Quinte West','Richmond Hill','Sarnia','Sault Ste. Marie','St. Catharines','St.Thomas','Stratford','Temiskaming Shores','Thorold','Thunder Bay','Timmins','Toronto','Vaughan','Waterloo','Welland','Windsor','Woodstock'];
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -16,12 +18,21 @@ export class AppComponent implements OnInit  {
   showAlert = false;
   showLoader = false;
   showSideNav = false;
+  showMap = false;
+  widthNav = 280;
   @ViewChild(MapComponent,{static: false}) map: MapComponent;
   @ViewChild(SideNavComponent,{static: false}) sideNav: SideNavComponent;
+  height : number;
+  @HostListener('window:resize', ['$event'])
+onResize(event?) {
+   this.height = window.innerHeight-100;
+}
   valueChanged(val) { 
+    this.showMap = true;
     this.showLoader = true;
     this.showAlert = false;
-   this.map.loadJobs(val,this.model);
+    this.map.loadJobs(val,this.model);
+   
 }
 displayList(event){
   this.showLoader = false;
@@ -54,7 +65,7 @@ search = (text$: Observable<string>) => {
 
   
   ngOnInit() {
-   
+   this.onResize();
    }
   
 }

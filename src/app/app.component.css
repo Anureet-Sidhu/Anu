@@ -49,3 +49,12 @@ border: 1px solid #555;
   .first{
     margin-left: 117px;
   }
+  .searchMargin{
+    margin-top: 85px;
+  }
+  .locationMargin{
+    margin-top: 40px;
+  }
+  .background{
+    background-image:url(src/assets/images/sample-2.jpg);
+  }

@@ -17,5 +17,18 @@
    margin-left: 15px !important;
 }
 .rating{
-  margin-left: 5p;
+  margin-right: 5px;
+}
+.graphMargin{
+  margin-left: -165px;
+  position: relative;
+  width: 3000px;
+  height: 489px;
+  overflow-x: scroll;
+}
+.sideNavWidth{
+  width: 3000px;
+}
+.resizeNav{
+  z-index: 200;
 }

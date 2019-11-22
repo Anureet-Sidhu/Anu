@@ -16,7 +16,7 @@ onResize(event?) {
    this.height = window.innerHeight-130;
 }
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 10;
   
   // initial center position for the map
   lat: number ;
@@ -42,7 +42,6 @@ onResize(event?) {
     }
   }
    clickedMarker(index: number, job:string) {
-    console.log(`clicked the marker: ${index}`)
     this.content = job;
     for (var i=0;i<this.markers.length;i++){
       this.markers[i].open = false;
@@ -53,9 +52,31 @@ onResize(event?) {
     this.service.getJobData(jobInput,location).subscribe(
       data => {
         this.markers$ = data;
+        this.zoom = 8;
         var s =data.Jobs;
         var myObject = eval('(' + s + ')');
+        myObject.forEach((item, index) => {
+          var star = []
+          item.rating = Math.floor(Math.random() * 5) + 1;
+          if(item.rating){
+            for(var i =0;i<item.rating;i++){
+              star.push(1);
+            }
+            item.stars=star;
+          }
+        });
+        myObject.sort((a, b) => {
+          if (a.rating > b.rating) {
+              return -1;
+          } else if (a.rating < b.rating) {
+              return 1;
+          } else {
+              return 0;
+          }
+      })
         this.markers = myObject;
+        this.lat = myObject[0].lat;
+        this.lng = myObject[0].lng;
         this.listToDisplay.emit({'list':this.markers});
       },
       error => {

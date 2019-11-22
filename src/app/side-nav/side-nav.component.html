@@ -1,14 +1,36 @@
+<div mwlResizable class="resizeNav"
+[enableGhostResize]="true"
+[resizeEdges]="{bottom: true, right: true, top: true, left: true}"
+(resizeEnd)="onResizeEnd($event)">
 <mat-drawer-container class="example-container">
         <mat-drawer class="inner-margin " mode="side" opened>
-          <div class="row" *ngFor="let marker of list">
-          <div class="col-md-9" >
-            {{marker.jobs}}
+          <div class="row">
+              <google-chart *ngIf="chart.length!=0"
+              class="graphMargin"
+              [title]="this.title"
+              [type]="this.graph"
+              [data]="this.chart"
+              [columnNames]="this.columnNames"
+              [options]="this.options"
+                 [width]="this.width"
+                 [height]="this.height1"
+              >
+              </google-chart>
           </div>
-          <div class="col-md-3">
-              <fa name="fas fa-globe"></fa>
-              <fa name="fas fa-star" class="rating" aria-hidden="true"></fa>
+          <div class="row sideNavWidth" *ngFor="let marker of list">
+          <div class="col-md-8" >
+            <div><b>Job Title: </b>{{marker.jobs}} </div>
+            <div><b>Address: </b>{{marker.address}} 
+            <span [hidden]="!marker.safeCity"><fa name="fas fa-exclamation-triangle" title="Unsafe place to work"></fa></span>
+            <span [hidden]="marker.safeCity"><i class="fa fa-shield" aria-hidden="true" title="Safe place to work"></i></span></div>
+            <div><a href="{{marker.url}}" target="_blank"><fa class="rating" name="fas fa-globe"></fa></a>
+            <span *ngFor="let star of marker.stars"><fa name="fas fa-star" aria-hidden="true"></fa></span></div>
+       
           </div>
+         
+          _____________________________________________________
         </div>
         </mat-drawer>
        
       </mat-drawer-container>
+      </div>

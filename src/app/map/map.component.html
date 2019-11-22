@@ -1,12 +1,20 @@
-<agm-map [latitude]="lat" [longitude]="lng"  [style.height.px]="height">
-        <agm-marker-cluster  averageCenter="true" minimumClusterSize="2"
+<agm-map [latitude]="lat" [longitude]="lng"  [style.height.px]="height" [zoom]="zoom">
+        <agm-marker-cluster [maxZoom]="2" averageCenter="true" minimumClusterSize="2"
         [imagePath]="'https://github.com/googlemaps/js-marker-clusterer/blob/gh-pages/images/m1.png?raw=true'">
              <agm-marker *ngFor="let marker of markers; let i=index" [latitude]="marker.lat" [longitude]="marker.lng"
              (markerClick)="clickedMarker(i,marker.jobs)" >
              <agm-info-window 
              [isOpen]="marker.open"
              [latitude]="marker.lat" 
-             [longitude]="marker.lng" *ngIf="marker.open">{{content}}</agm-info-window>
+             [longitude]="marker.lng" *ngIf="marker.open">
+             <div><b>Job Title: </b> {{marker.jobs}}</div>
+             <div><b>Address: </b>{{marker.address}}
+               <span [hidden]="!marker.safeCity"><fa name="fas fa-exclamation-triangle" title="Unsafe place to work"></fa></span>
+            <span [hidden]="marker.safeCity"><i class="fa fa-shield" aria-hidden="true" title="Safe place to work"></i></span></div>
+           
+             <div><b>Website URL: </b><a href="{{marker.url}}"target="_blank"><fa class="rating" name="fas fa-globe"></fa></a></div>
+             <div><b>Rating: </b> <span *ngFor="let star of marker.stars"><fa name="fas fa-star" class="rating" aria-hidden="true"></fa></span></div>
+          </agm-info-window>
             </agm-marker>
              
        </agm-marker-cluster>
