@@ -2,8 +2,8 @@
 
 <div class="row backgroundClr heading">
     <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <h1>Job Market Analysis</h1>
+    <div class="col-md-8">
+        <h1 class="overlay">Job Market Analysis</h1>
       </div>
 </div>
 
@@ -11,7 +11,7 @@
     <div class="row ">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-      <input type="text" class="form-control jobInput searchMargin"
+      <input type="text" class="form-control mainScreen searchMargin"
       placeholder="What kind of job are you looking for?"
         required
         [(ngModel)]="searchField" />
@@ -27,7 +27,7 @@
           <input
         id="typeahead-focus"
         type="text"
-        class="form-control jobInput"
+        class="form-control mainScreen"
         [(ngModel)]="model"
         [ngbTypeahead]="search"
         (focus)="focus$.next($event.target.value)"
@@ -38,6 +38,16 @@
         </div>
         <div class="col-md-4"></div>
       </div>
+
+      <div class="row locationMargin">
+        <div class="col-md-5"></div>
+        <div class="col-md-4">
+        <button class="btn btnWidth" [disabled]="!searchField|| searchField.length==0 || !model || model.length==0" 
+        (click)="valueChanged(searchField)">Search</button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
 </div>
 
 <div [hidden]="!showMap">
