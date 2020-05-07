@@ -1,0 +1,12 @@
+.background{
+    background-image:url(/src/assets/images/developer.JPG);
+  }
+  .carousel-caption{
+    color: black !important;
+    bottom: 60px !important;
+    left: 60% !important;
+  }
+.w-100{
+  width: 50% !important;
+  height: 60% !important;
+}

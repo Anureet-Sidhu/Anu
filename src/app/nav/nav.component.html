@@ -1,0 +1,13 @@
+
+<div class="row backgroundClr">
+<div class="col-md-2">
+ <a rounterLinkActive="active" routerLink="about" (click)="toggleLink()">About</a>
+</div>
+<div class="col-md-2" [hidden]="disableLink">
+ <a rounterLinkActive="active" routerLink="" (click)="toggleLink()">Close</a>
+       </div>  
+</div>      
+ 
+    <router-outlet></router-outlet>
+
+

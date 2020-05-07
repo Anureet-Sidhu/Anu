@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MapComponent } from './map/map.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { SideNavService } from './side-nav/side-nav.service';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
@@ -18,7 +17,17 @@ import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { AngularDraggableModule } from 'angular2-draggable';
 import { ResizableModule } from 'angular-resizable-element';
+import { AboutComponent } from './about/about.component';
+import { NavComponent } from './nav/nav.component';
+import { APP_BASE_HREF } from '@angular/common';
+import { Routes, RouterModule } from '@angular/router';
+import { CloseComponent } from './close/close.component';
+const appRoutes: Routes =[
 
+  {path: 'about', component: AboutComponent},
+  {path: '', component: CloseComponent}
+
+];
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,10 +45,11 @@ import { ResizableModule } from 'angular-resizable-element';
     AgmJsMarkerClustererModule,
     GoogleChartsModule.forRoot(),
     AngularDraggableModule,
-    ResizableModule
+    ResizableModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
-  declarations: [ AppComponent, MapComponent, SideNavComponent, FooterComponent, AlertsComponent ],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  declarations: [ AppComponent, MapComponent, SideNavComponent, FooterComponent, AlertsComponent, AboutComponent, NavComponent, CloseComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
